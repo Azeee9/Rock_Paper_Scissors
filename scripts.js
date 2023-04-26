@@ -12,13 +12,40 @@ function getComputerChoice () {
 
 function singleRound(playerSelection, computerSelection) {
     if(playerSelection == computerSelection) {
-        return `Draw! You and computer both chose ${playerSelection}`;
+        console.log(`Draw! You and computer both chose ${playerSelection}`)
+        return 0;
     } else if(playerSelection == "ROCK" && computerSelection == "SCISSORS" || playerSelection == "PAPER" && computerSelection == "ROCK" || playerSelection == "SCISSORS" && computerSelection == "PAPER") {
-        return `You Win! ${playerSelection} beats ${computerSelection}`;
+        console.log(`You Win! ${playerSelection} beats ${computerSelection}`)
+        return 1;
     } else {
-        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+        console.log(`You Lose! ${computerSelection} beats ${playerSelection}`)
+        return 2;
     }
 }
 
-let player = prompt("Choose: Rock, Paper or Scissor").toUpperCase();
-console.log(singleRound(player, getComputerChoice()));
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    while(playerScore < 3 && computerScore < 3) {
+        let player = prompt("Choose: Rock, Paper or Scissor").toUpperCase();
+        let computer = getComputerChoice();
+        let round = singleRound(player, computer);
+        if(round == 0) {
+            playerScore++;
+            computerScore++;
+        } else if(round == 1) {
+            playerScore++;
+        } else {
+            computerScore++;
+        }
+        console.log(`Your Current Score is ${playerScore}`);
+        console.log(`The current computer score is ${computerScore}`);
+    }
+    if(playerScore > computerScore) {
+        console.log(`Well Done, you win ${playerScore} - ${computerScore}!`);
+    } else {
+        console.log(`What a pity, you lost ${playerScore} - ${computerScore}...`);
+    }
+}
+
+game();
