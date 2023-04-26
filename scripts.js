@@ -1,8 +1,13 @@
 function getComputerChoice () {
     let i = Math.floor((Math.random() * 3) + 1);
-    return i;
+    switch(i) {
+        case 1:
+            return "rock";
+        case 2:
+            return "paper";
+        case 3:
+            return "scissors";
+    }
     }
 
-
-console.log("banana");
 console.log(getComputerChoice());
